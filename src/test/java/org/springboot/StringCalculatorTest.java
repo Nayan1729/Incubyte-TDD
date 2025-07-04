@@ -30,4 +30,8 @@ public class StringCalculatorTest {
         assertEquals(21,stringCalculator.add("1,2,3,4,5,6"));
         assertEquals(0,stringCalculator.add(""));
     }
+    @Test
+    public void inputWithNewLinesBetweenNumbersReturnsTheirSum(){
+        assertEquals(6,stringCalculator.add("1,2\n3"));
+    }
 }
