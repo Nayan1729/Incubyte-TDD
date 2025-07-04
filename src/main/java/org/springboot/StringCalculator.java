@@ -7,12 +7,16 @@ public class StringCalculator
 {
     public int sumOfNumbers(String [] numbers){
         int sumOfNumbers = 0;
+        ArrayList<Integer> negativateNumbers = new ArrayList<>();
         for(String num : numbers){
             int parsedNum = Integer.parseInt(num);
             if(parsedNum < 0){
-                throw new IllegalArgumentException("negatives not allowed "+parsedNum );
+                negativateNumbers.add(parsedNum);
             }
             sumOfNumbers += parsedNum;
+        }
+        if(negativateNumbers.size() > 0){
+            throw new IllegalArgumentException("negatives not allowed "+negativateNumbers);
         }
         return sumOfNumbers;
     }
