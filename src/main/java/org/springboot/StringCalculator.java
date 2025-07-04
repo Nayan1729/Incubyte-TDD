@@ -1,6 +1,8 @@
 package org.springboot;
 
 
+import java.util.Arrays;
+
 public class StringCalculator
 {
     public int sumOfNumbers(String [] numbers){
@@ -23,7 +25,7 @@ public class StringCalculator
         if(stringInputNums.startsWith("//")){
             stringInputNums = stringInputNums.substring(2); // Remove // from input string
             char newDelimiter = stringInputNums.charAt(0);
-            stringInputNums = stringInputNums.substring(3); // Remove ;\n
+            stringInputNums = stringInputNums.substring(2); // Remove ;\n
             DELIMITER = processDelimiter(newDelimiter , DELIMITER);
         }
         String numbers[] = stringInputNums.split(DELIMITER); // Split the numbers with DELIMITER as a regex

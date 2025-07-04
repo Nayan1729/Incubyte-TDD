@@ -38,6 +38,11 @@ public class StringCalculatorTest {
 
     @Test
     public void inputWithUserDefinedDelimiters(){
-        assertEquals(3,stringCalculator.add("//;\\n1;2"));
+        assertEquals(6,stringCalculator.add("//;\n1,2;3"));
+    }
+
+    @Test
+    public void inputWithNegativeNumbers(){
+        assertThrows(Exception.class,()->stringCalculator.add("//;\n1,-2;3"));
     }
 }
