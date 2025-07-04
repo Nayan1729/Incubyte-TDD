@@ -19,6 +19,9 @@ public class StringCalculatorTest {
     public void inputWithOnlyOneNumberReturnsOneNumber(){
         assertEquals(1,stringCalculator.add("1"));
         assertEquals(100,stringCalculator.add("100"));
-
+    }
+    @Test
+    public void inputWithTwoNumberReturnsAddedNumber(){
+        assertEquals(3,stringCalculator.add("1,2"));
     }
 }
