@@ -1,7 +1,7 @@
 package org.springboot;
 
 
-import java.util.Arrays;
+import java.util.ArrayList;
 
 public class StringCalculator
 {
@@ -10,7 +10,7 @@ public class StringCalculator
         for(String num : numbers){
             int parsedNum = Integer.parseInt(num);
             if(parsedNum < 0){
-                throw new IllegalArgumentException("negatives not allowed "+parsedNum);
+                throw new IllegalArgumentException("negatives not allowed "+parsedNum );
             }
             sumOfNumbers += parsedNum;
         }

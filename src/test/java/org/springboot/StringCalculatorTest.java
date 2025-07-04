@@ -1,7 +1,5 @@
 package org.springboot;
 
-
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -44,5 +42,10 @@ public class StringCalculatorTest {
     @Test
     public void inputWithNegativeNumbers(){
         assertThrows(Exception.class,()->stringCalculator.add("//;\n1,-2;3"));
+    }
+    @Test
+    public void inputWithMultipleNegativeNumbers(){
+        Exception exception = assertThrows(Exception.class,()->stringCalculator.add("//;\n1,-2;-3"));
+        assertEquals(exception.getMessage(),"negatives not allowed ["+ -2 +","+ -3+"]");
     }
 }
