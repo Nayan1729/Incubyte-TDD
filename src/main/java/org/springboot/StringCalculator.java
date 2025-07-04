@@ -7,7 +7,8 @@ public class StringCalculator
         if(stringInputNums.isEmpty()){ // To handle empty string as an input
             return 0;
         }
-        String nums[] = stringInputNums.split(","); // Split the numbers with delimiter as ','
+        String DELIMITER = "[,\\n]"; // DELIMITER as Regex
+        String nums[] = stringInputNums.split(DELIMITER); // Split the numbers with DELIMITER as a regex
         int sum = 0;
         for(String num : nums){
             sum += Integer.parseInt(num);
