@@ -15,4 +15,8 @@ public class StringCalculatorTest {
     public void inputWithEmptyString(){
         assertEquals(0,stringCalculator.add(""));
     }
+    @Test
+    public void inputWithOnlyOneNumberReturnsOneNumber(){
+        assertEquals(1,stringCalculator.add("1"));
+    }
 }
