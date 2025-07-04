@@ -1,6 +1,7 @@
 package org.springboot;
 
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -33,5 +34,10 @@ public class StringCalculatorTest {
     @Test
     public void inputWithNewLinesBetweenNumbersReturnsTheirSum(){
         assertEquals(6,stringCalculator.add("1,2\n3"));
+    }
+
+    @Test
+    public void inputWithUserDefinedDelimiters(){
+        assertEquals(6,stringCalculator.add("//;\n1;2"));
     }
 }
