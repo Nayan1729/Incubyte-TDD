@@ -8,7 +8,11 @@ public class StringCalculator
     public int sumOfNumbers(String [] numbers){
         int sumOfNumbers = 0;
         for(String num : numbers){
-            sumOfNumbers += Integer.parseInt(num);
+            int parsedNum = Integer.parseInt(num);
+            if(parsedNum < 0){
+                throw new IllegalArgumentException("negatives not allowed "+parsedNum);
+            }
+            sumOfNumbers += parsedNum;
         }
         return sumOfNumbers;
     }
@@ -17,7 +21,7 @@ public class StringCalculator
         mainDelimiter = mainDelimiter.substring(0, closingBracketIndex) + newDelimiter +']';
         return mainDelimiter;
     }
-    public int add(String stringInputNums){
+    public int add(String stringInputNums) {
         if(stringInputNums.isEmpty()){ // To handle empty string as an input
             return 0;
         }
