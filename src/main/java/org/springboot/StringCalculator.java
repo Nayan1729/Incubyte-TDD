@@ -4,16 +4,13 @@ package org.springboot;
 public class StringCalculator
 {
     public int add(String stringInputNums){
-        if(stringInputNums.isEmpty()){
+        if(stringInputNums.isEmpty()){ // To handle empty string as an input
             return 0;
         }
-        String nums[] = stringInputNums.split(",");
+        String nums[] = stringInputNums.split(","); // Split the numbers with delimiter as ','
         int sum = 0;
-        if(nums.length == 1){
-            sum = Integer.parseInt(nums[0]);
-        }
-        if(nums.length == 2){
-            sum = Integer.parseInt(nums[0])+Integer.parseInt(nums[1]);
+        for(String num : nums){
+            sum += Integer.parseInt(num);
         }
         return sum;
     }

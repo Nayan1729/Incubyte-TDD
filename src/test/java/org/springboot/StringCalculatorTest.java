@@ -25,7 +25,9 @@ public class StringCalculatorTest {
         assertEquals(3,stringCalculator.add("1,2"));
     }
     @Test
-    public void inputWithMultipleNumbersReturnsTheirSum(){
+    public void inputWithUnkownNumbersReturnsTheirSum(){
         assertEquals(6,stringCalculator.add("1,2,3"));
+        assertEquals(21,stringCalculator.add("1,2,3,4,5,6"));
+        assertEquals(0,stringCalculator.add(""));
     }
 }
