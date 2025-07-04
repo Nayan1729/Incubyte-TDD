@@ -24,4 +24,8 @@ public class StringCalculatorTest {
     public void inputWithTwoNumberReturnsAddedNumber(){
         assertEquals(3,stringCalculator.add("1,2"));
     }
+    @Test
+    public void inputWithMultipleNumbersReturnsTheirSum(){
+        assertEquals(6,stringCalculator.add("1,2,3"));
+    }
 }
