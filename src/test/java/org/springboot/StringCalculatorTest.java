@@ -48,4 +48,11 @@ public class StringCalculatorTest {
         Exception exception = assertThrows(Exception.class,()->stringCalculator.add("//;\n1,-2;-3"));
         assertEquals(exception.getMessage(),"negatives not allowed [-2, -3]");
     }
+
+    @Test
+    public void testToCountNumberOfTimesAddWasInvoked(){
+        stringCalculator.add("1,2");
+        stringCalculator.add("1,2,3");
+        assertEquals(2,stringCalculator.getCalledCount());
+    }
 }
