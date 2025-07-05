@@ -2,6 +2,7 @@ package org.springboot;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class StringCalculator
 {
@@ -34,22 +35,35 @@ public class StringCalculator
             return 0;
         }
         String DELIMITER = "[,\\n]"; // DELIMITER as Regex
+        StringBuilder updatedDelimiters;
         if(stringInputNums.startsWith("//")){
             stringInputNums = stringInputNums.substring(2); // Remove // from input string
             String newDelimiter = String.valueOf(stringInputNums.charAt(0));
             if(newDelimiter.equals("[")){
-                System.out.println("Hello");
-                int delimiterEndIndex = stringInputNums.indexOf(']');
-                String multipleLengthDelimiter = stringInputNums.substring(1,delimiterEndIndex);
-                System.out.println(multipleLengthDelimiter);
-                multipleLengthDelimiter = multipleLengthDelimiter.replaceAll("([\\\\*+\\[\\](){}|.^$?])", "\\\\$1");
-                StringBuilder updatedDelimiters = new StringBuilder();
 
-                updatedDelimiters.append(",|\\n");
-                updatedDelimiters.append("|").append(multipleLengthDelimiter);
-                DELIMITER = updatedDelimiters.toString();
-                //Shorten the delimiter
-                stringInputNums = stringInputNums.substring(stringInputNums.indexOf("\n")+1);
+                if(stringInputNums.charAt(2)==']'){
+                    int closingBracketIndex = stringInputNums.indexOf("]\n");
+                    newDelimiter = stringInputNums.substring(1,closingBracketIndex);
+                    updatedDelimiters = new StringBuilder();
+                    updatedDelimiters.append(",|\\n");
+                    for(int i=0;i<newDelimiter.length();i+=3){
+                        String delimiter = String.valueOf(newDelimiter.charAt(i));
+                        delimiter = delimiter.replaceAll("([\\\\*+\\[\\](){}|.^$?])", "\\\\$1");
+                        updatedDelimiters.append("|").append(delimiter);
+                    }
+                    stringInputNums = stringInputNums.substring(stringInputNums.indexOf("\n")+1);
+                    DELIMITER = updatedDelimiters.toString();
+                }else{
+                    int delimiterEndIndex = stringInputNums.indexOf(']');
+                    String multipleLengthDelimiter = stringInputNums.substring(1,delimiterEndIndex);
+                    multipleLengthDelimiter = multipleLengthDelimiter.replaceAll("([\\\\*+\\[\\](){}|.^$?])", "\\\\$1");
+                    updatedDelimiters = new StringBuilder();
+                    updatedDelimiters.append(",|\\n");
+                    updatedDelimiters.append("|").append(multipleLengthDelimiter);
+                    DELIMITER = updatedDelimiters.toString();
+                    //Shorten the delimiter
+                    stringInputNums = stringInputNums.substring(stringInputNums.indexOf("\n")+1);
+                }
             }else{
                 stringInputNums = stringInputNums.substring(2); // Remove ;\n
                 DELIMITER = processDelimiter(newDelimiter , DELIMITER);
@@ -57,7 +71,6 @@ public class StringCalculator
         }
 
         String numbers[] = stringInputNums.split(DELIMITER); // Split the numbers with DELIMITER as a regex
-
         int sumOfNums = sumOfNumbers(numbers);
         return sumOfNums;
     }

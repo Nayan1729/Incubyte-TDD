@@ -63,4 +63,8 @@ public class StringCalculatorTest {
     public void testThatTakesASingleDelimiterOfAnyLength(){
         assertEquals(6,stringCalculator.add("//[***]\n1***2,3"));
     }
+    @Test
+    public void  testThatTakesMultipleDelimitersOfSingleLength(){
+        assertEquals(6,stringCalculator.add("//[*][%]\n1*2%3"));
+    }
 }
