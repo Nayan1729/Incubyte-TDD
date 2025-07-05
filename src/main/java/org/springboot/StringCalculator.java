@@ -23,7 +23,7 @@ public class StringCalculator
         }
         return sumOfNumbers;
     }
-    public String processDelimiter(char newDelimiter,String mainDelimiter ){
+    public String processDelimiter(String newDelimiter,String mainDelimiter ){
         int closingBracketIndex = mainDelimiter.indexOf(']');
         mainDelimiter = mainDelimiter.substring(0, closingBracketIndex) + newDelimiter +']';
         return mainDelimiter;
@@ -36,11 +36,28 @@ public class StringCalculator
         String DELIMITER = "[,\\n]"; // DELIMITER as Regex
         if(stringInputNums.startsWith("//")){
             stringInputNums = stringInputNums.substring(2); // Remove // from input string
-            char newDelimiter = stringInputNums.charAt(0);
-            stringInputNums = stringInputNums.substring(2); // Remove ;\n
-            DELIMITER = processDelimiter(newDelimiter , DELIMITER);
+            String newDelimiter = String.valueOf(stringInputNums.charAt(0));
+            if(newDelimiter.equals("[")){
+                System.out.println("Hello");
+                int delimiterEndIndex = stringInputNums.indexOf(']');
+                String multipleLengthDelimiter = stringInputNums.substring(1,delimiterEndIndex);
+                System.out.println(multipleLengthDelimiter);
+                multipleLengthDelimiter = multipleLengthDelimiter.replaceAll("([\\\\*+\\[\\](){}|.^$?])", "\\\\$1");
+                StringBuilder updatedDelimiters = new StringBuilder();
+
+                updatedDelimiters.append(",|\\n");
+                updatedDelimiters.append("|").append(multipleLengthDelimiter);
+                DELIMITER = updatedDelimiters.toString();
+                //Shorten the delimiter
+                stringInputNums = stringInputNums.substring(stringInputNums.indexOf("\n")+1);
+            }else{
+                stringInputNums = stringInputNums.substring(2); // Remove ;\n
+                DELIMITER = processDelimiter(newDelimiter , DELIMITER);
+            }
         }
+
         String numbers[] = stringInputNums.split(DELIMITER); // Split the numbers with DELIMITER as a regex
+
         int sumOfNums = sumOfNumbers(numbers);
         return sumOfNums;
     }
