@@ -51,8 +51,8 @@ public class StringCalculatorTest {
 
     @Test
     public void testToCountNumberOfTimesAddWasInvoked(){
-        stringCalculator.add("1,2");
-        stringCalculator.add("1,2,3");
+        assertThrows(IllegalArgumentException.class,()->stringCalculator.add("//;\n1,-2;3"));
+        assertEquals(3,stringCalculator.add("1,2"));
         assertEquals(2,stringCalculator.getCalledCount());
     }
 }

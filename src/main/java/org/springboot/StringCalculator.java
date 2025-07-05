@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class StringCalculator
 {
+    private  int count = 0;
     public int sumOfNumbers(String [] numbers){
         int sumOfNumbers = 0;
         ArrayList<Integer> negativateNumbers = new ArrayList<>();
@@ -26,6 +27,7 @@ public class StringCalculator
         return mainDelimiter;
     }
     public int add(String stringInputNums) {
+        count++;
         if(stringInputNums.isEmpty()){ // To handle empty string as an input
             return 0;
         }
@@ -39,5 +41,9 @@ public class StringCalculator
         String numbers[] = stringInputNums.split(DELIMITER); // Split the numbers with DELIMITER as a regex
         int sumOfNums = sumOfNumbers(numbers);
         return sumOfNums;
+    }
+
+    public int getCalledCount() {
+        return this.count;
     }
 }
