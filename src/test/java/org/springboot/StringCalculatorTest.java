@@ -55,4 +55,8 @@ public class StringCalculatorTest {
         assertEquals(3,stringCalculator.add("1,2"));
         assertEquals(2,stringCalculator.getCalledCount());
     }
+    @Test
+    public void testThatIgnoresNumbersGreaterThanThousand(){
+        assertEquals(3,stringCalculator.add("1,1001,2"));
+    }
 }
