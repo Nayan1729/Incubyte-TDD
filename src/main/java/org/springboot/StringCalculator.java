@@ -13,6 +13,8 @@ public class StringCalculator
             int parsedNum = Integer.parseInt(num);
             if(parsedNum < 0){
                 negativateNumbers.add(parsedNum);
+            }else if(parsedNum > 1000){
+                continue;
             }
             sumOfNumbers += parsedNum;
         }
