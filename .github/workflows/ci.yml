@@ -44,5 +44,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/incubyte-string-calculator-tdd-kata:$(date + %Y%m%d%H%M%S)
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/incubyte-string-calculator-tdd-kata:${{ github.run_number }}
           file: ./Dockerfile
